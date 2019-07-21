@@ -1,6 +1,5 @@
 package application.controllers;
 
-import application.interfaces.CanvasNames;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -19,11 +18,11 @@ import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import static application.controllers.MainController.ant;
-import static application.controllers.MainController.bundle;
+import static application.controllers.MainController.*;
+import static application.utility.CanvasProperty.*;
 
 
-public class Controller implements Initializable, CanvasNames {
+public class DrawingAntOnCanvasController implements Initializable {
 
     @FXML
     Canvas canvas;
@@ -71,7 +70,7 @@ public class Controller implements Initializable, CanvasNames {
         timeline.stop();
     }
 
-    final Timeline timeline = new Timeline(
+    private final Timeline timeline = new Timeline(
             new KeyFrame(Duration.seconds(0.001), actionEvent -> {
 
                 WritableImage snap = canvas.getGraphicsContext2D().getCanvas().snapshot(null, null);
