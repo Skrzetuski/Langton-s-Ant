@@ -1,7 +1,6 @@
 package application.controllers;
 
 import application.Ant;
-import application.interfaces.ProgramNames;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,14 +11,15 @@ import javafx.stage.Stage;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import static application.utility.ProgramProperty.*;
 
-public class MainController extends Application implements ProgramNames {
+public class MainController extends Application {
 
     static WritableImage image;
 
     static ResourceBundle bundle;
 
-    static Ant ant = Ant.Builder.builder().positionX(200).positionY(200).size(2).direction(1).build();
+    static Ant ant = Ant.builder().positionX(200).positionY(200).size(2).direction(1).build();
 
     @Override
     public void start(Stage stage) throws Exception {

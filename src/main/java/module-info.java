@@ -1,4 +1,4 @@
-open module JavaFX11Template {
+open module LangtonsAnt {
     requires javafx.graphics;
     requires javafx.fxml;
     requires javafx.controls;

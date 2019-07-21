@@ -1,15 +1,14 @@
 package application;
 
-import application.interfaces.DirectionNames;
+import lombok.Builder;
 import lombok.Data;
 
-import static application.interfaces.CanvasNames.HEIGHT;
-import static application.interfaces.CanvasNames.WIDTH;
+import static application.utility.CanvasProperty.*;
+import static application.utility.DirectionNames.*;
 
+@Builder
 @Data
-public class Ant implements DirectionNames {
-
-    private static Ant ant;
+public class Ant {
 
     private Integer positionX;
 
@@ -18,15 +17,6 @@ public class Ant implements DirectionNames {
     private Integer size;
 
     private Integer direction;
-
-    private Ant() {}
-
-    public static Ant getInstance() {
-        if (ant == null) {
-            ant = new Ant();
-        }
-        return ant;
-    }
 
     private void run(Integer direction) {
 
@@ -55,6 +45,7 @@ public class Ant implements DirectionNames {
 
     public void turnLeft() {
         this.direction--;
+
         if (this.direction < 1) this.direction = 4;
         this.run(this.direction);
     }
@@ -80,70 +71,6 @@ public class Ant implements DirectionNames {
             this.setPositionY(WIDTH - this.getSize());
         }
 
-    }
-
-    public static final class Builder {
-
-        private Integer positionX = 100;
-
-        private Integer positionY = 100;
-
-        private Integer size = 2;
-
-        private Integer direction = 1;
-
-
-        public Builder size(Integer size) {
-            this.size = size;
-            return this;
-        }
-
-        public Builder positionX(Integer positionX) {
-            this.positionX = positionX;
-            return this;
-        }
-
-        public Builder positionY(Integer positionY) {
-            this.positionY = positionY;
-            return this;
-        }
-
-        public Builder direction(Integer direction) {
-            this.direction = direction;
-            return this;
-        }
-
-        public static Builder builder() {
-            return new Builder();
-        }
-
-        public Ant build() {
-
-            if (positionX == null) {
-                throw new IllegalStateException("PositionX is empty");
-            }
-
-            if (positionY == null) {
-                throw new IllegalStateException("PositionY is empty");
-            }
-
-            if (size == null) {
-                throw new IllegalStateException("Size is not defined");
-            }
-
-            if (direction == null) {
-                throw new IllegalStateException("Direction is not defined");
-            }
-
-            Ant ant = new Ant();
-            ant.setPositionX(positionX);
-            ant.setPositionY(positionY);
-            ant.setSize(size);
-            ant.setDirection(direction);
-            Ant.ant = ant;
-
-            return ant;
-        }
     }
 
 }
